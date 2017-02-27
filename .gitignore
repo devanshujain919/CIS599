@@ -96,3 +96,4 @@ Experiments/Experiment-3/extraction/shard/
 Experiments/Experiment-3/extraction/wikipedia_names
 Experiments/Experiment-4/run/
 data/
+run-evaluate.sh.*
