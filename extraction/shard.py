@@ -11,8 +11,10 @@ def divide(filename, num_shards):
         if not os.path.exists("shard/shard-%d" %(i)):
             os.makedirs("shard/shard-%d" %(i))
             shutil.copyfile("article-extractor.py", "shard/shard-%d/article-extractor.py" %(i))
+            shutil.copyfile("backlink-extractor-2.py", "shard/shard-%d/article-extractor.py" %(i))
             with open("shard/shard-%d/run.sh" %(i), "w") as f:
                 f.write("python article-extractor.py wiki-shard.txt")
+                f.write("python backlink-extractor-2.py wiki-shard.txt")
         write_files.append(open("shard/shard-%d/wiki-shard.txt" %(i), "a"))
         write_files[i].write(langline)
 
