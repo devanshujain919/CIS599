@@ -11,25 +11,27 @@ def getLangList(inputFile):
 
 def createData(inputFile, languages):
     jsonData = []
-    with codecs.open(inputFile, "r", encoding="utf-8") as f:
-        for i,content in enumerate(f):
-            if not i == 0:
-                parse = dict()
-                line = content.strip("\r\n").split("\t")
-                for j,word in enumerate(line):
-                    if not word == "":
-                        if languages[j] not in parse:
-                            parse[languages[j]] = []
-                        try:
-                            parse[languages[j]].append(word)
-                        except UnicodeEncodeError as err:    
-                            print(word)
-                            print(i)
-                            print(languages[j])
-                            print(err)
-                            exit()
-                jsonData.append(parse)
-        return jsonData
+    with open(inputFile, "r") as f:
+        data = f.read()
+    lines = data.strip("\r\n").split("\n")
+    for i,content in enumerate(lines):
+        if not i == 0:
+            parse = dict()
+            line = content.split("\t")
+            for j,word in enumerate(line):
+                if not word == "":
+                    if languages[j] not in parse:
+                        parse[languages[j]] = []
+                    try:
+                        parse[languages[j]].append(word)
+                    except UnicodeEncodeError as err:    
+                        print(word)
+                        print(i)
+                        print(languages[j])
+                        print(err)
+                        exit()
+            jsonData.append(parse)
+    return jsonData
 
 def includeBacklinks(dataDir, languages, jsonData):
     for lang in languages:
@@ -83,8 +85,8 @@ def includeNationality(mapFile, nationalityFile, jsonData):
 def main(inputFile, dataDir, mapFile, nationalityFile, outputFile):
     languages = getLangList(inputFile)
     jsonData = createData(inputFile, languages)
-    jsonData = includeBacklinks(dataDir, languages, jsonData)
-    jsonData = includeNationality(mapFile, nationalityFile, jsonData)
+#    jsonData = includeBacklinks(dataDir, languages, jsonData)
+#    jsonData = includeNationality(mapFile, nationalityFile, jsonData)
     with open(outputFile, "w") as f:
         json.dump(jsonData, f, sort_keys=True, indent=4)
 
