@@ -24,17 +24,7 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
     outputPath = os.path.join(dirPath, "train-" + str(int(perc * 100)), "intermediate-target")
     if not os.path.isdir(outputPath):
         os.makedirs(outputPath)
-    numTestableLines = 0
-    for (sl,tl) in zip(sourceData, targetData):
-        if sl != "" and tl != "":
-            numTestableLines += 1
-    assignment = random.sample(range(numTestableLines), numTestableLines)
-
-    """
-    will put `numTestLines` for testing
-    have to select training data from rest 
-    """
-
+    
     joshuaCommand = "/nlp/users/devjain/joshua-6.0.5/bin/pipeline.pl " \
         "--rundir ./ " \
         "--source " + sourceLang + " " \
@@ -42,6 +32,7 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
         "--type hiero " \
         "--corpus ../input/train." + sourceLang + "-" + intermediateLang + " " \
         "--tune ../input/tune." + sourceLang + "-" + intermediateLang + " " \
+        "--test ../input/test." + sourceLang + "-" + intermediateLang + " " \
         "--lm-order 8 " \
         "--lm-gen berkeleylm " \
         "--lm berkeleylm " \
@@ -54,8 +45,9 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
         "--source " + intermediateLang + " " \
         "--target " + targetLang + " " \
         "--type hiero " \
-        "--corpus ../input/train" + intermediateLang + "-" + targetLang + " " \
-        "--tune ../input/tune" + intermediateLang + "-" + targetLang + " " \
+        "--corpus ../input/train." + intermediateLang + "-" + targetLang + " " \
+        "--tune ../input/tune." + intermediateLang + "-" + targetLang + " " \
+        "--tune ../input/test." + intermediateLang + "-" + targetLang + " " \
         "--lm-order 8 " \
         "--lm-gen berkeleylm " \
         "--lm berkeleylm " \
@@ -63,17 +55,29 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
     with open(os.path.join(dirPath, "train-" + str(int(perc * 100)), "intermediate-target", "run_intermediate_target.sh"), "w") as f:
         f.write(joshuaCommand)
 
+    numTestableLines = 0
+    for (sl,tl) in zip(sourceData, targetData):
+        if sl != "" and tl != "":
+            numTestableLines += 1
     numTestLines = int(0.5 * (1.0 - perc) * numTestableLines)
-    
+    assignment = random.sample(range(numTestableLines), numTestableLines)
+
+    """
+    will put `numTestLines` for testing
+    have to select training data from rest 
+    """
+
     sourceTestData = []
     intermediateTestData = []
     targetTestData = []
+    dataUsed = []
     cnt = 0
     for i in assignment:
         if cnt >= numTestLines:
             break
         if sourceData[i] != "" and targetData[i] != "":
             cnt += 1
+            dataUsed.append(i)
             sourceTestData.append(sourceData[i])
             intermediateTestData.append(intermediateData[i])
             targetTestData.append(targetData[i])
@@ -81,16 +85,20 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
     writeData(os.path.join(inputPath, "test." + intermediateLang), intermediateTestData)
     writeData(os.path.join(inputPath, "test." + targetLang), targetTestData)
     
+    remainingData = range(len(sourceData))
+    for i in dataUsed:
+        remainingData.remove(i)
+
     sourceIntermediateTrainData_source = []
     sourceIntermediateTrainData_intermediate = []
-    for i in assignment[cnt:]:
+    for i in remainingData:
         if sourceData[i] != "" and intermediateData[i] != "":
             sourceIntermediateTrainData_source.append(sourceData[i])
             sourceIntermediateTrainData_intermediate.append(intermediateData[i])
-    sourceIntermediateTrainData_source_tune = sourceIntermediateTrainData_source[:numTestLines]
-    sourceIntermediateTrainData_intermediate_tune = sourceIntermediateTrainData_intermediate[:numTestLines]
-    sourceIntermediateTrainData_source_train = sourceIntermediateTrainData_source[numTestLines:]
-    sourceIntermediateTrainData_intermediate_train = sourceIntermediateTrainData_intermediate[numTestLines:]
+    sourceIntermediateTrainData_source_tune = sourceIntermediateTrainData_source[:len(sourceTestData)]
+    sourceIntermediateTrainData_intermediate_tune = sourceIntermediateTrainData_intermediate[:len(sourceTestData)]
+    sourceIntermediateTrainData_source_train = sourceIntermediateTrainData_source[len(sourceTestData):]
+    sourceIntermediateTrainData_intermediate_train = sourceIntermediateTrainData_intermediate[len(sourceTestData):]
     writeData(os.path.join(inputPath, "train." + sourceLang + "-" + intermediateLang + "." + sourceLang), sourceIntermediateTrainData_source_train)
     writeData(os.path.join(inputPath, "train." + sourceLang + "-" + intermediateLang + "." + intermediateLang), sourceIntermediateTrainData_intermediate_train)
     writeData(os.path.join(inputPath, "tune." + sourceLang + "-" + intermediateLang + "." + sourceLang), sourceIntermediateTrainData_source_tune)
@@ -98,18 +106,18 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
 
     intermediateTargetTrainData_intermediate = []
     intermediateTargetTrainData_target = []
-    for i in assignment[cnt:]:
+    for i in remainingData:
         if intermediateData[i] != "" and targetData[i] != "":
             intermediateTargetTrainData_intermediate.append(intermediateData[i])
             intermediateTargetTrainData_target.append(targetData[i])
-    intermediateTargetTrainData_intermediate_tune = intermediateTargetTrainData_intermediate[:numTestLines]
-    intermediateTargetTrainData_target_tune = intermediateTargetTrainData_target[:numTestLines]
-    intermediateTargetTrainData_intermediate_train = intermediateTargetTrainData_intermediate[numTestLines:]
-    intermediateTargetTrainData_target_train = intermediateTargetTrainData_target[numTestLines:]
+    intermediateTargetTrainData_intermediate_tune = intermediateTargetTrainData_intermediate[:len(intermediateTestData)]
+    intermediateTargetTrainData_target_tune = intermediateTargetTrainData_target[:len(intermediateTestData)]
+    intermediateTargetTrainData_intermediate_train = intermediateTargetTrainData_intermediate[len(intermediateTestData):]
+    intermediateTargetTrainData_target_train = intermediateTargetTrainData_target[len(intermediateTestData):]
     writeData(os.path.join(inputPath, "train." + intermediateLang + "-" + targetLang + "." + intermediateLang), intermediateTargetTrainData_intermediate_train)
     writeData(os.path.join(inputPath, "train." + intermediateLang + "-" + targetLang + "." + targetLang), intermediateTargetTrainData_target_train)
     writeData(os.path.join(inputPath, "tune." + intermediateLang + "-" + targetLang + "." + intermediateLang), intermediateTargetTrainData_intermediate_tune)
-    writeData(os.path.join(inputPath, "tune." + intermediateLang + "-" + targetLang + "." + targetLang), intermediateTargetTrainData_intermediate_tune)
+    writeData(os.path.join(inputPath, "tune." + intermediateLang + "-" + targetLang + "." + targetLang), intermediateTargetTrainData_target_tune)
 
 def main(sourceFilePath, sourceLang, intermediateFilePath, intermediateLang, targetFilePath, targetLang, outputDir, numRep):
     sourceData = readData(sourceFilePath)
