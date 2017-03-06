@@ -49,10 +49,12 @@ def main(languages, inputFile, outputDir):
             cleanData.append(item)
     print("writing")
     for lang in languages:
-        with open(os.path.join(outputDir, lang), "w") as f:
+        with codecs.open(os.path.join(outputDir, lang), "w", encoding="utf-8") as f:
             for item in cleanData:
                 try:
-                    f.write(item[lang])
+                    w = item[lang].decode("utf-8")
+                    w = re.sub(" ", "_", w)
+                    f.write(" ".join(list(w)))
                     f.write("\n")
                 except KeyError as err:
                     print(lang)

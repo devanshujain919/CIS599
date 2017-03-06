@@ -32,7 +32,7 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
         "--type hiero " \
         "--corpus ../input/train." + sourceLang + "-" + intermediateLang + " " \
         "--tune ../input/tune." + sourceLang + "-" + intermediateLang + " " \
-        "--test ../input/test." + sourceLang + "-" + intermediateLang + " " \
+        "--test ../input/tune." + sourceLang + "-" + intermediateLang + " " \
         "--lm-order 8 " \
         "--lm-gen berkeleylm " \
         "--lm berkeleylm " \
@@ -47,7 +47,7 @@ def handleRep(sourceData, sourceLang, intermediateData, intermediateLang, target
         "--type hiero " \
         "--corpus ../input/train." + intermediateLang + "-" + targetLang + " " \
         "--tune ../input/tune." + intermediateLang + "-" + targetLang + " " \
-        "--tune ../input/test." + intermediateLang + "-" + targetLang + " " \
+        "--test ../input/tune." + intermediateLang + "-" + targetLang + " " \
         "--lm-order 8 " \
         "--lm-gen berkeleylm " \
         "--lm berkeleylm " \

@@ -87,8 +87,10 @@ def main(inputFile, dataDir, mapFile, nationalityFile, outputFile):
     jsonData = createData(inputFile, languages)
 #    jsonData = includeBacklinks(dataDir, languages, jsonData)
 #    jsonData = includeNationality(mapFile, nationalityFile, jsonData)
-    with open(outputFile, "w") as f:
+    with open("pretty-" + outputFile, "w") as f:
         json.dump(jsonData, f, sort_keys=True, indent=4)
+    with open(outputFile, "w") as f:
+        json.dump(jsonData, f)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Preprocess Data")
