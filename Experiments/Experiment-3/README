@@ -1,1 +1,1 @@
-The objective of this experiment is to observe whether the presence of additional information such as the source of origin for a language can affect the system performance. I will cluster the training data based on the source of origin of the word. Then, I will train different models for each cluster.
+The objective of this experiment is to observe how the usage of wikipedia backlinks to augment training data affects the results

@@ -1,8 +1,6 @@
-# -*- coding: <utf-8> -*-
 import argparse
 import os
 import json
-import codecs
 
 def getLangList(inputFile):
     with open(inputFile) as f:
@@ -17,7 +15,7 @@ def createData(inputFile, languages):
     for i,content in enumerate(lines):
         if not i == 0:
             parse = dict()
-            line = content.split("\t")
+            line = content.decode("utf-8").split("\t")
             for j,word in enumerate(line):
                 if not word == "":
                     if languages[j] not in parse:
@@ -39,10 +37,11 @@ def includeBacklinks(dataDir, languages, jsonData):
         if not os.path.isfile(fileName):
             print("ERROR")
             exit()
-        with codecs.open(fileName, "r", encoding="utf-8") as f:
-            for index,content in enumerate(f):
+        with open(fileName, "r") as f:
+            lines = f.read().strip().split("\n")
+            for index,content in enumerate(lines):
                 if not index == 0:
-                    line = content.strip("\r\n").split("\t")
+                    line = content.decode("utf-8").strip("\r\n").split("\t")
                     count = int(line[0])
                     if count > 1:
                         if lang not in jsonData[index - 1]:
@@ -74,7 +73,7 @@ def includeNationality(mapFile, nationalityFile, jsonData):
     nationality = readNationalityFile(nationalityFile)
     for key,value in mapping.iteritems():
         if value in nationality:
-            jsonData[key - 1]["nationality"] = nationality[value].strip()
+            jsonData[key - 1]["nationality"] = nationality[value].strip().decode("utf-8", "ignore")
     return jsonData
 
 """
@@ -85,8 +84,8 @@ def includeNationality(mapFile, nationalityFile, jsonData):
 def main(inputFile, dataDir, mapFile, nationalityFile, outputFile):
     languages = getLangList(inputFile)
     jsonData = createData(inputFile, languages)
-#    jsonData = includeBacklinks(dataDir, languages, jsonData)
-#    jsonData = includeNationality(mapFile, nationalityFile, jsonData)
+    jsonData = includeBacklinks(dataDir, languages, jsonData)
+    jsonData = includeNationality(mapFile, nationalityFile, jsonData)
     with open("pretty-" + outputFile, "w") as f:
         json.dump(jsonData, f, sort_keys=True, indent=4)
     with open(outputFile, "w") as f:
