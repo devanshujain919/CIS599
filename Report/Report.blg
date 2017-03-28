@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Report.aux
+The style file: acl_natbib.bst
+Database file #1: acl2017.bib
+A bad cross reference---entry "knight-graehl-1"
+refers to entry "DBLP:conf/acl/1997", which doesn't exist
+A bad cross reference---entry "virga-khudanpur-1"
+refers to entry "DBLP:conf/sigir/2003", which doesn't exist
+A bad cross reference---entry "ganesh-1"
+refers to entry "DBLP:conf/ijcnlp/2008", which doesn't exist
+Warning--I didn't find a database entry for "DBLP:conf/acl/1997"
+Warning--I didn't find a database entry for "DBLP:conf/sigir/2003"
+Warning--I didn't find a database entry for "DBLP:conf/ijcnlp/2008"
+Warning--empty journal in chinnakotla-1
+Warning--empty journal in kumaran-2
+You've used 12 entries,
+            2936 wiz_defined-function locations,
+            689 strings with 8180 characters,
+and the built_in function-call counts, 9679 in all, are:
+= -- 786
+> -- 415
+< -- 12
++ -- 139
+- -- 123
+* -- 741
+:= -- 1343
+add.period$ -- 65
+call.type$ -- 12
+change.case$ -- 119
+chr.to.int$ -- 12
+cite$ -- 14
+duplicate$ -- 763
+empty$ -- 779
+format.name$ -- 163
+if$ -- 2036
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 143
+newline$ -- 73
+num.names$ -- 48
+pop$ -- 304
+preamble$ -- 1
+purify$ -- 89
+quote$ -- 0
+skip$ -- 264
+stack$ -- 0
+substring$ -- 461
+swap$ -- 405
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 108
+warning$ -- 2
+while$ -- 66
+width$ -- 0
+write$ -- 184
+(There were 3 error messages)

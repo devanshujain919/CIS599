@@ -1,0 +1,119 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Chinnakotla et~al.(2010)Chinnakotla, Damani, and
+  Satoskar}]{chinnakotla-1}
+Manoj~K. Chinnakotla, Om~P. Damani, and Avijit Satoskar. 2010.
+\newblock \href{https://doi.org/10.1145/1838751.1838753}{Transliteration for
+  resource-scarce languages} 9(4):14:1--14:30.
+\newblock
+  \href{https://doi.org/10.1145/1838751.1838753}{https://doi.org/10.1145/1838751.1838753}.
+
+\bibitem[{Duan et~al.(2016)Duan, Banchs, Zhang, Li, and
+  Kumaran}]{report-news2016-1}
+Xiangyu Duan, Rafael Banchs, Min Zhang, Haizhou Li, and A.~Kumaran. 2016.
+\newblock \href{http://www.aclweb.org/anthology/W16-2709}{Report of news 2016
+  machine transliteration shared task}.
+\newblock In {\em Proceedings of the Sixth Named Entity Workshop\/}.
+  Association for Computational Linguistics, Berlin, Germany, pages 58--72.
+\newblock
+  \href{http://www.aclweb.org/anthology/W16-2709}{http://www.aclweb.org/anthology/W16-2709}.
+
+\bibitem[{Finch et~al.(2016)Finch, Liu, Wang, and Sumita}]{finch-news-2016-1}
+Andrew Finch, Lemao Liu, Xiaolin Wang, and Eiichiro Sumita. 2016.
+\newblock \href{http://www.aclweb.org/anthology/W16-2711}{Target-bidirectional
+  neural models for machine transliteration}.
+\newblock In {\em Proceedings of the Sixth Named Entity Workshop\/}.
+  Association for Computational Linguistics, Berlin, Germany, pages 78--82.
+\newblock
+  \href{http://www.aclweb.org/anthology/W16-2711}{http://www.aclweb.org/anthology/W16-2711}.
+
+\bibitem[{Huang(2005)}]{huang-name-origin-1}
+Fei Huang. 2005.
+\newblock \href{https://doi.org/10.3115/1220575.1220630}{Cluster-specific named
+  entity transliteration}.
+\newblock In {\em Proceedings of the Conference on Human Language Technology
+  and Empirical Methods in Natural Language Processing\/}. Association for
+  Computational Linguistics, Stroudsburg, PA, USA, HLT '05, pages 435--442.
+\newblock
+  \href{https://doi.org/10.3115/1220575.1220630}{https://doi.org/10.3115/1220575.1220630}.
+
+\bibitem[{Irvine et~al.(2010)Irvine, Callison-Burch, and Klementiev}]{burch-1}
+Ann Irvine, Chris Callison-Burch, and Alexandre Klementiev. 2010.
+\newblock Transliterating from all languages.
+\newblock In {\em Proceedings of the Conference of the Association for Machine
+  Translation in the Americas (AMTA)\/}.
+
+\bibitem[{Knight and Graehl(1997)}]{knight-graehl-1}
+Kevin Knight and Jonathan Graehl. 1997.
+\newblock \href{http://aclweb.org/anthology/P/P97/P97-1017.pdf}{Machine
+  transliteration}.
+\newblock In {\em 35th Annual Meeting of the Association for Computational
+  Linguistics and 8th Conference of the European Chapter of the Association for
+  Computational Linguistics, Proceedings of the Conference, 7-12 July 1997,
+  Universidad Nacional de Educaci{\'{o}}n a Distancia (UNED), Madrid,
+  Spain.\/}. pages 128--135.
+\newblock
+  \href{http://aclweb.org/anthology/P/P97/P97-1017.pdf}{http://aclweb.org/anthology/P/P97/P97-1017.pdf}.
+
+\bibitem[{Kumaran and Kellner(2007)}]{kumaran-1}
+A.~Kumaran and Tobias Kellner. 2007.
+\newblock \href{https://doi.org/10.1145/1277741.1277876}{A generic framework
+  for machine transliteration}.
+\newblock In {\em Proceedings of the 30th Annual International ACM SIGIR
+  Conference on Research and Development in Information Retrieval\/}. ACM, New
+  York, NY, USA, SIGIR '07, pages 721--722.
+\newblock
+  \href{https://doi.org/10.1145/1277741.1277876}{https://doi.org/10.1145/1277741.1277876}.
+
+\bibitem[{Kumaran et~al.(2010)Kumaran, Khapra, and Bhattacharyya}]{kumaran-2}
+A.~Kumaran, Mitesh~M. Khapra, and Pushpak Bhattacharyya. 2010.
+\newblock \href{https://doi.org/10.1145/1838751.1838752}{Compositional machine
+  transliteration} 9(4):13:1--13:29.
+\newblock
+  \href{https://doi.org/10.1145/1838751.1838752}{https://doi.org/10.1145/1838751.1838752}.
+
+\bibitem[{Li et~al.(2009)Li, Callison-Burch, Dyer, Ganitkevitch, Khudanpur,
+  Schwartz, Thornton, Weese, and Zaidan}]{li-joshua-1}
+Zhifei Li, Chris Callison-Burch, Chris Dyer, Juri Ganitkevitch, Sanjeev
+  Khudanpur, Lane Schwartz, Wren N.~G. Thornton, Jonathan Weese, and Omar~F.
+  Zaidan. 2009.
+\newblock \href{http://dl.acm.org/citation.cfm?id=1626431.1626459}{Joshua: An
+  open source toolkit for parsing-based machine translation}.
+\newblock In {\em Proceedings of the Fourth Workshop on Statistical Machine
+  Translation\/}. Association for Computational Linguistics, Stroudsburg, PA,
+  USA, StatMT '09, pages 135--139.
+\newblock
+  \href{http://dl.acm.org/citation.cfm?id=1626431.1626459}{http://dl.acm.org/citation.cfm?id=1626431.1626459}.
+
+\bibitem[{Oh et~al.(2006)Oh, Choi, and Isahara}]{oh-hybrid-1}
+Jong{-}Hoon Oh, Key{-}Sun Choi, and Hitoshi Isahara. 2006.
+\newblock \href{https://doi.org/10.1145/1194936.1194938}{A machine
+  transliteration model based on correspondence between graphemes and
+  phonemes}.
+\newblock {\em {ACM} Trans. Asian Lang. Inf. Process.\/} 5(3):185--208.
+\newblock
+  \href{https://doi.org/10.1145/1194936.1194938}{https://doi.org/10.1145/1194936.1194938}.
+
+\bibitem[{Pingali et~al.(2008)Pingali, Ganesh, Yella, and Varma}]{ganesh-1}
+Prasad Pingali, Surya Ganesh, Sree~Harsha Yella, and Vasudeva Varma. 2008.
+\newblock \href{http://aclweb.org/anthology/I/I08/I08-6006.pdf}{Statistical
+  transliteration for cross language information retrieval using {HMM}
+  alignment model and {CRF}}.
+\newblock In {\em Third International Joint Conference on Natural Language
+  Processing, {IJCNLP} 2008, Hyderabad, India, January 7-12, 2008\/}. pages
+  42--47.
+\newblock
+  \href{http://aclweb.org/anthology/I/I08/I08-6006.pdf}{http://aclweb.org/anthology/I/I08/I08-6006.pdf}.
+
+\bibitem[{Virga and Khudanpur(2003)}]{virga-khudanpur-1}
+Paola Virga and Sanjeev Khudanpur. 2003.
+\newblock \href{https://doi.org/10.1145/860435.860503}{Transliteration of
+  proper names in cross-language applications}.
+\newblock In {\em {SIGIR} 2003: Proceedings of the 26th Annual International
+  {ACM} {SIGIR} Conference on Research and Development in Information
+  Retrieval, July 28 - August 1, 2003, Toronto, Canada\/}. pages 365--366.
+\newblock
+  \href{https://doi.org/10.1145/860435.860503}{https://doi.org/10.1145/860435.860503}.
+
+\end{thebibliography}
