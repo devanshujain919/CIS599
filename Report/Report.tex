@@ -18,6 +18,9 @@
 \usepackage[bottom]{footmisc}
 \usepackage{amsmath}
 
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
 \bibliographystyle{acl_natbib}
 
 \usepackage{url}
@@ -114,7 +117,23 @@ Another experiment was performed to measure a value of n to maximise the accurac
 Following \citet{burch-1}, we have used Joshua toolkit for phoneme-based transliteration treating the task as a monotone character based translation. We used 8-gram character based language model for our study. We pre-process the data just like them, however, we omit the inclusion of special characters at the word boundaries. The underscore itself ('\_') should be able to handle the individual words.
 
 \subsection{Data}
-We used the same data extracted by \citet{burch-1} using the link given in their paper. In addition, we mined some extra data from Wikipedia to augment it. Wikipedia API provides the service to get backlinks i.e. all the pages that link to a given page. Using this API, we obtain the title of all the pages that link to every a given entity in the original dataset. Using this, we can capture spelling variations for a given named entity. For example, for a page titled "Barack Obama", we obtained pages with titles such as: "Barak Obama", "Barach Obama", "Borrack Obama", "Barack H Obama", "44th President of the United States", etc. Augmenting the original dataset with 1$^{st}$, 2$^{nd}$ and 3$^{rd}$ options seem correct, 4$^{th}$ seems okay but 5$^{th}$ should not be included. To clean the data, we computed a decent threshold for the edit distances between the original page title and backlinked page title. If the edit distance is less than threshold, then the dataset is augmented with the backlinked page title, otherwise not. The threshold was computed manually by the authors.
+
+\begin{figure*}[!htb]
+	\centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=1.0\linewidth]{hi_edit_hist.png}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=1.0\linewidth]{en_edit_hist.png}
+    \end{minipage}
+    \caption{Edit distances Histograms}
+    \label{fig:edit_hist}
+\end{figure*}
+
+We used the same data extracted by \citet{burch-1} using the link given in their paper. In addition, we mined some extra data from Wikipedia to augment it. Wikipedia API provides the service to get backlinks i.e. all the pages that link to a given page. Using this API, we obtain the title of all the pages that link to every a given entity in the original dataset. Using this, we can capture spelling variations for a given named entity. For example, for a page titled "Barack Obama", we obtained pages with titles such as: "Barak Obama", "Barach Obama", "Borrack Obama", "Barack H Obama", "44th President of the United States", etc. Augmenting the original dataset with 1$^{st}$, 2$^{nd}$ and 3$^{rd}$ options seem correct, 4$^{th}$ seems okay but 5$^{th}$ should not be included. To clean the data, we computed a decent threshold for the edit distances between the original page title and backlinked page title. If the edit distance is less than threshold, then the dataset is augmented with the backlinked page title, otherwise not. The threshold was computed empirically by analysing the histograms (Fig. \ref{fig:edit_hist}) of the edit-distances computed as above. We chose a threshold of 0.2 for Hindi Edit Distances and 0.3 for English Edit Distances
+
 \par
 \citet{huang-name-origin-1} have shown that having the data corresponding to the word's source of origin may boost transliteration performance. They do it by using a statistical clustering technique to group the data into different classes and then using the transliteration system on each of those classes. To get the named-entity source of origin for our data, we first tried to get the entity's nationality by parsing the original Engish wikipedia article and using regular expression to parse B from "A is a B" (Amitabh Bachhan is an Indian actor) type of structure in the first sentence. We also tried to replicate \citet{huang-name-origin-1} experiment with our dataset and compare the performance for both the techniques. 
 \par
